@@ -36,4 +36,32 @@ tg-trello-import-project-members {
         margin: 2rem auto 0;
         padding: 12px 60px;
     }
+    .user-actions {
+        align-items: center;
+        display: flex;
+        button {
+            fill: $white;
+        }
+    }
+    .taiga-user {
+        align-items: center;
+        display: flex;
+        margin-right: 1rem;
+        .img {
+            margin-right: .5rem;
+            max-width: 3rem;
+        }
+        img {
+            width: 100%;
+        }
+    }
+    .check-selected {
+        svg {
+            fill: $primary-light;
+        }
+    }
+    .spin {
+        text-align: center;
+        width: 100%;
+    }
 }

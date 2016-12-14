@@ -29,8 +29,8 @@ class TrelloImportProjectFormController
         @.projectForm = @.project.toJS()
 
         @.projectForm.is_private = false
-        @.projectForm.archived = false
-        @.projectForm.links = false
+        # @.projectForm.archived = false
+        @.projectForm.keepExternalReference = false
 
     saveProjectDetails: (project) ->
         @.onSaveProjectDetails({project: Immutable.fromJS(project)})

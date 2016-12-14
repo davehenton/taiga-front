@@ -987,6 +987,10 @@
             "SEARCH_CONTACT": "Or if you want, search in your contacts",
             "WRITE_EMAIL_LABEL": "Write the email that their use in Taiga",
             "EMAIL_NOT_FOUND": "We did not find any users with that email",
+            "IN_PROGRESS": {
+                "TITLE": "Importing Project",
+                "DESCRIPTION": "This process can take a while, please keep the window open."
+            },
             "WARNING": {
                 "TITLE": "Some taks will be unassigned",
                 "DESCRIPTION": "There are still unidentified people. The cards assigned to these people will remain unassigned. Check all the contacts to not lose that information.",

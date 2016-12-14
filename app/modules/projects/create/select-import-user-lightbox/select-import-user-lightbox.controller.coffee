@@ -24,16 +24,22 @@ class SelectImportUserLightboxCtrl
     ]
 
     constructor: (@userService, @currentUserService) ->
-        @.user = @currentUserService.getUser()
+
+    start: () ->
+        @.currentUser = @currentUserService.getUser()
+
         @.mode = 'search'
         @.invalid = false
 
-        @userService.getContacts(@.user.get('id')).then(@.setContacts.bind(this))
+        @userService.getContacts(@.currentUser.get('id')).then(@.setContacts.bind(this))
 
     setContacts: (contacts) ->
         @.users = contacts
 
     searchUser: () ->
         @.invalid = true
+
+    selectUser: (taigaUser) ->
+        @.onSelectUser({user: @.user, taigaUser: Immutable.fromJS(taigaUser)})
 
 angular.module('taigaProjects').controller('SelectImportUserLightboxCtrl', SelectImportUserLightboxCtrl)

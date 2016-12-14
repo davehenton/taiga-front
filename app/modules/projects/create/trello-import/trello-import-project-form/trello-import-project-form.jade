@@ -61,20 +61,20 @@
                     tg-svg(svg-icon="icon-lock")
                     span(translate="PROJECT.CREATE.PRIVATE_PROJECT")
 
-        fieldset.create-project-check
-            label(for="archieved-projects")
-                span.title {{'PROJECT.IMPORT.ARCHIVED' | translate}}
-                span.description {{'PROJECT.IMPORT.ARCHIVED_DESCRIPTION' | translate}}
+        //- fieldset.create-project-check
+        //-     label(for="archieved-projects")
+        //-         span.title {{'PROJECT.IMPORT.ARCHIVED' | translate}}
+        //-         span.description {{'PROJECT.IMPORT.ARCHIVED_DESCRIPTION' | translate}}
 
-            .check
-                input.activate-input(
-                    ng-model="vm.archived"
-                    name="archieved-projects"
-                    type="checkbox"
-                )
-                div
-                span.check-text.check-yes(translate="COMMON.YES")
-                span.check-text.check-no(translate="COMMON.NO")
+        //-     .check
+        //-         input.activate-input(
+        //-             ng-model="vm.archived"
+        //-             name="archieved-projects"
+        //-             type="checkbox"
+        //-         )
+        //-         div
+        //-         span.check-text.check-yes(translate="COMMON.YES")
+        //-         span.check-text.check-no(translate="COMMON.NO")
 
         fieldset.create-project-check
             label(for="links")
@@ -83,7 +83,7 @@
 
             .check
                 input.activate-input(
-                    ng-model="vm.links"
+                    ng-model="vm.projectForm.keepExternalReference"
                     name="links"
                     type="checkbox"
                 )

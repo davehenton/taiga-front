@@ -18,16 +18,14 @@
 ###
 
 class TrelloImportController
-    constructor: ($timeout, @trelloImportService) ->
+    constructor: (@trelloImportService, @confirm, @translate, @projectUrl, @location) ->
         @.step = 'autorization-trello'
         @.project = null
         taiga.defineImmutableProperty @, 'projects', () => return @trelloImportService.projects
         taiga.defineImmutableProperty @, 'members', () => return @trelloImportService.projectUsers
 
-        $timeout () =>
-            #@.step = 'project-members-trello'
-            @.startProjectSelector()
-        , 200
+         #@.step = 'project-members-trello'
+        @.startProjectSelector()
 
     startProjectSelector: () ->
         @.step = 'project-select-trello'
@@ -43,7 +41,30 @@ class TrelloImportController
 
         @trelloImportService.fetchUsers(@.project.get('id'))
 
-    onSelectUsers: (users) ->
-        console.log "import"
+    startImport: (users) ->
+        loader = @confirm.loader(@translate.instant('PROJECT.IMPORT.IN_PROGRESS.TITLE'))
 
-angular.module('taigaProjects').controller('TrelloImportCtrl', ['$timeout', "tgTrelloImportService", TrelloImportController])
+        loader.start()
+        loader.update('', @translate.instant('PROJECT.IMPORT.IN_PROGRESS.TITLE'), @translate.instant('PROJECT.IMPORT.IN_PROGRESS.DESCRIPTION'))
+
+        @trelloImportService.importProject(
+            @.project.get('id'),
+            users,
+            @.project.get('keepExternalReference'),
+            @.project.get('is_private')
+        ).then (project) =>
+            loader.stop()
+            @location.url(@projectUrl.get(project))
+
+    onSelectUsers: (users) ->
+        @.startImport(users)
+
+        return null
+
+angular.module('taigaProjects').controller('TrelloImportCtrl', [
+    'tgTrelloImportService',
+    '$tgConfirm',
+    '$translate',
+    '$projectUrl',
+    '$location',
+    TrelloImportController])

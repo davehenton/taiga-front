@@ -3,19 +3,7 @@ tg-lightbox-close(on-close="vm.onClose()")
 .form(ng-if="vm.visible")
     h2.title(translate="PROJECT.IMPORT.WHO_IS")
 
-    .candidate-user
-        .user-list-avatar
-            a(
-                href=""
-                title="{{'COMMON.ASSIGNED_TO' | translate}}"
-            )
-                img(
-                    ng-src="{{vm.user.avatar}}"
-                )
-        a.user-list-name(
-            href=""
-            title="{{vm.user.name}}"
-        ) {{vm.user.name}}
+    p.candidate-user {{vm.user.get('full_name')}}
 
     form(ng-if="vm.mode == 'mail'", ng-submit="vm.searchUser()")
         fieldset
@@ -57,7 +45,7 @@ tg-lightbox-close(on-close="vm.onClose()")
         .assigned-to-list
             .user-list-single(
                 ng-repeat="user in vm.users | toMutable | filter: vm.usersSearch | limitTo: 5",
-                ng-click="vm.onSelectUser({user: user})"
+                ng-click="vm.selectUser(user)"
             )
                 .user-list-avatar
                     a(

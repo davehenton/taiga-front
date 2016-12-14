@@ -49,7 +49,7 @@ TrelloResource = (urlsService, http) ->
         data = {
             token: token,
             project: projectId,
-            user_bindings: userBindings,
+            user_bindings: userBindings.toJS(),
             keep_external_reference: keepExternalReference,
             is_private: isPrivate,
             template: "kanban",

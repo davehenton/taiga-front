@@ -5,18 +5,39 @@
     p.process-description(translate="PROJECT.IMPORT.TRELLO.PROCESS_DESCRIPTION")
 
     p.importer-name(translate="PROJECT.IMPORT.TRELLO.TITLE")
-    ul
+
+    .spin(tg-loading="!!!vm.members.size")
+
+    ul(ng-if="vm.members.size")
         li.user-row(tg-repeat="member in vm.members track by member.get('id')")
             .user-info
-                .avatar.empty {{member.get('fullName')[0].toUpperCase()}}
-                span.username {{member.get('fullName')}}
+                .avatar.empty {{member.get('full_name')[0].toUpperCase()}}
+                span.username {{member.get('full_name')}}
 
-            button.button.button-green(
-                ng-click="vm.searchUser(member)"
-                translate="PROJECT.IMPORT.TRELLO.CHOOSE"
-            )
+            .user-actions
+                .taiga-user(ng-if="vm.getUser(member)")
+                    .img
+                        img(tg-avatar="vm.getUser(member)")
+                    | {{vm.getUser(member).get('full_name')}}
+
+                .check-selected(ng-if="vm.isMemberSelected(member)")
+                    tg-svg(svg-icon="icon-check-empty")
+
+                div(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
+                    button.button.button-green(ng-click="vm.confirmUser(member, member.get('user'))")
+                        tg-svg(svg-icon="icon-check-empty")
+
+                    button.button.button-red(ng-click="vm.cleanUser(member)")
+                        tg-svg(svg-icon="icon-close")
+
+                div(ng-if="(!member.get('user') || vm.cancelledUsers.indexOf(member.get('id')) !== -1) && !vm.isMemberSelected(member)")
+                    button.button.button-green(
+                        ng-click="vm.searchUser(member)"
+                        translate="PROJECT.IMPORT.TRELLO.CHOOSE"
+                    )
 
     button.button.button-green.submit(
+        ng-if="vm.members.size > 0"
         ng-click="vm.beforeSubmitUsers()"
         translate="PROJECT.IMPORT.IMPORT"
     )
@@ -25,11 +46,11 @@
        visible="vm.selectImportUserLightbox"
        on-close="vm.selectImportUserLightbox = false"
        user="vm.searchingUser"
-       on-select-user="vm.selectUser(user)"
+       on-select-user="vm.confirmUser(user, taigaUser)"
     )
 
     tg-warning-user-import-lightbox.lightbox(
         visible="vm.warningImportUsers"
-        on-confirm="vm.onConfirm()"
+        on-confirm="vm.submit()"
         on-close="vm.warningImportUsers = false"
     )

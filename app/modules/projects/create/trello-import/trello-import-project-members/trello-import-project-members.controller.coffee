@@ -18,31 +18,61 @@
 ###
 
 class TrelloImportProjectMembersController
-    @.$inject = [
-        'tgTrelloImportService'
-    ]
-
-    constructor: (@trelloImportService) ->
+    constructor: () ->
         @.selectImportUserLightbox = false
         @.warningImportUsers = false
-        @.selectedUsers = []
-        # console.log @.members
-        # @.members = Immutable.fromJS([
-        #     {
-        #         id: 1,
-        #         full_name: ''
-        #     }
-        # ])
+        @.selectedUsers = Immutable.List()
+        @.cancelledUsers = Immutable.List()
 
     searchUser: (user) ->
         @.selectImportUserLightbox = true
         @.searchingUser = user
 
-    selectUser: (user) ->
+    beforeSubmitUsers: () ->
+        if @.selectedUsers.size != @.members.size
+            @.warningImportUsers = true
+        else
+            @.submit()
+
+    confirmUser: (trelloUser, taigaUser) ->
         @.selectImportUserLightbox = false
 
-    beforeSubmitUsers: () ->
-        @.warningImportUsers = true
-        #@.onSubmit({users: @.selectedUsers})
+        user = Immutable.Map()
+
+        user = user.set('trelloUser', trelloUser)
+        user = user.set('taigaUser', taigaUser)
+
+        @.selectedUsers = @.selectedUsers.push(user)
+
+    cleanUser: (member) ->
+        @.cancelledUsers = @.cancelledUsers.push(member.get('id'))
+
+    getSelectedMember: (member) ->
+        return @.selectedUsers.find (it) ->
+            return it.getIn(['trelloUser', 'id']) == member.get('id')
+
+    isMemberSelected: (member) ->
+        return !!@.getSelectedMember(member)
+
+    getUser: (user) ->
+        userSelected = @.getSelectedMember(user)
+
+        if userSelected
+            return userSelected.get('taigaUser')
+
+        if !userSelected
+            return user.get('user')
+
+        return null
+
+    submit: () ->
+        @.warningImportUsers = false
+
+        users = Immutable.Map()
+
+        @.selectedUsers.map (it) ->
+            users = users.set(it.getIn(['trelloUser', 'id']), it.getIn(['taigaUser', 'id']))
+
+        @.onSubmit({users: users})
 
 angular.module('taigaProjects').controller('TrelloImportProjectMembersCtrl', TrelloImportProjectMembersController)
