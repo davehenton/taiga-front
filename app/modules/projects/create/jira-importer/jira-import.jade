@@ -1,0 +1,22 @@
+.create-project.import-project(ng-if="vm.step == 'autorization-jira'")
+        p autorization...
+
+tg-jira-import-project-selector(
+    projects="vm.projects"
+    on-cancel="vm.onCancel()"
+    on-select-project="vm.onSelectProject(project)"
+    ng-if="vm.step == 'project-select-jira'"
+)
+
+tg-jira-import-project-form(
+    project="vm.project"
+    on-save-project-details="vm.onSaveProjectDetails(project)"
+    ng-if="vm.step == 'project-form-jira'"
+)
+
+tg-jira-import-project-members(
+    project="vm.project"
+    members="vm.members"
+    ng-if="vm.step == 'project-members-jira'"
+    on-submit="vm.onSelectUsers(users)"
+)

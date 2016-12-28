@@ -28,7 +28,7 @@ taiga = @.taiga
 TrelloResource = (urlsService, http) ->
     service = {}
 
-    service.getAuthUrl = () ->
+    service.getAuthUrl = (url) ->
         url = urlsService.resolve("importers-trello-auth-url")
         return http.get(url)
 
@@ -61,5 +61,43 @@ TrelloResource = (urlsService, http) ->
 
 TrelloResource.$inject = ["$tgUrls", "$tgHttp"]
 
+JiraResource = (urlsService, http) ->
+    service = {}
+
+    service.getAuthUrl = (jira_url) ->
+        url = urlsService.resolve("importers-jira-auth-url") + "?url=" + jira_url
+        return http.get(url)
+
+    service.authorize = () ->
+        url = urlsService.resolve("importers-jira-authorize")
+        return http.post(url)
+
+    service.listProjects = (jira_url, token) ->
+        url = urlsService.resolve("importers-jira-list-projects")
+        return http.post(url, {url: jira_url, token: token}).then (response) -> Immutable.fromJS(response.data)
+
+    service.listUsers = (jira_url, token, projectId) ->
+        url = urlsService.resolve("importers-jira-list-users")
+        return http.post(url, {url: jira_url, token: token, project: projectId}).then (response) -> Immutable.fromJS(response.data)
+
+    service.importProject = (jira_url, token, projectId, userBindings, keepExternalReference, isPrivate) ->
+        url = urlsService.resolve("importers-jira-import-project")
+        data = {
+            url: jira_url,
+            token: token,
+            project: projectId,
+            user_bindings: userBindings.toJS(),
+            keep_external_reference: keepExternalReference,
+            is_private: isPrivate,
+            template: "kanban",
+        }
+        return http.post(url, data)
+
+    return () ->
+        return {"jiraImporter": service}
+
+JiraResource.$inject = ["$tgUrls", "$tgHttp"]
+
 module = angular.module("taigaResources2")
 module.factory("tgTrelloImportResource", TrelloResource)
+module.factory("tgJiraImportResource", JiraResource)

@@ -210,6 +210,12 @@ urls = {
     "importers-trello-list-projects": "/importers/trello/list_projects"
     "importers-trello-list-users": "/importers/trello/list_users"
     "importers-trello-import-project": "/importers/trello/import_project"
+
+    "importers-jira-auth-url": "/importers/jira/auth_url"
+    "importers-jira-authorize": "/importers/jira/authorize"
+    "importers-jira-list-projects": "/importers/jira/list_projects"
+    "importers-jira-list-users": "/importers/jira/list_users"
+    "importers-jira-import-project": "/importers/jira/import_project"
 }
 
 # Initialize api urls service

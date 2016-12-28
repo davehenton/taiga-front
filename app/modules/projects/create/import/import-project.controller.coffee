@@ -20,31 +20,45 @@
 class ImportProjectController
     @.$inject = [
         'tgTrelloImportService',
+        'tgJiraImportService',
         '$location',
         '$window',
     ]
 
-    constructor: (@trelloService, @location, @window) ->
+    constructor: (@trelloService, @jiraService, @location, @window) ->
 
     start: ->
         @.from = null
         verifyCode = @location.search().oauth_verifier
+        jiraOauthToken = @location.search().oauth_token
         token = @location.search().token
+        jiraToken = @location.search().jiraToken
 
         if token
-            @.from = "trello"
+            # @.from = @location.search().from
+            @.from = @location.search().from
             @.token = token
 
         if verifyCode
             return @trelloService.authorize(verifyCode).then (token) =>
                 @location.search({from: "trello", token: token})
 
+        if jiraOauthToken
+            @jiraService.authorize().then (data) =>
+                @location.search({from: "jira", token: data.token, url: data.url})
+
     select: (from) ->
         if from == "trello"
             @trelloService.getAuthUrl().then (url) =>
                 @window.open(url, "_self")
+        else if from == "jira"
+            @jiraService.getAuthUrl(@.jiraUrl).then (url) =>
+                @window.open(url, "_self")
         else
             @.from = from
+
+    unfoldOptions: (options) ->
+        @.unfoldedOptions = options
 
     onCancel: () ->
         @.from = null

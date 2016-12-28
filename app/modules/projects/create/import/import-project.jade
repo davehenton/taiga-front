@@ -11,7 +11,11 @@
             li
                 .import-project-from-site(ng-click="vm.select('trello')") Trello
             li
-                .import-project-from-site Jira
+                .import-project-from-site(ng-click="vm.unfoldOptions('jira')") Jira
+                div(ng-if="vm.unfoldedOptions == 'jira'")
+                  label(for="jira-host") Tu URL de Jira
+                  input(id="jira-host", ng-model="vm.jiraUrl")
+                  input(type="button", value="Acceder", ng-click="vm.select('jira')")
             li
                 .import-project-from-site Github
 
@@ -21,5 +25,9 @@
 
 tg-trello-import(
     ng-if="vm.from == 'trello'"
+    on-cancel="vm.onCancel()"
+)
+tg-jira-import(
+    ng-if="vm.from == 'jira'"
     on-cancel="vm.onCancel()"
 )
