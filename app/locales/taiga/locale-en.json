@@ -980,8 +980,6 @@
             "IMPORT": "Import",
             "ARCHIVED": "Archived",
             "ARCHIVED_DESCRIPTION": "You have archived projects, Do you want to import your archived projects?",
-            "LINKS": "Links with Trello",
-            "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Trello card?",
             "WHO_IS": "Who is in Taiga?",
             "WRITE_EMAIL": "Or if you want, write the email that their use in Taiga",
             "SEARCH_CONTACT": "Or if you want, search in your contacts",
@@ -999,9 +997,20 @@
             "TRELLO": {
                 "TITLE": "Trello",
                 "CHOOSE_BOARD": "Choose board that you want to import",
+                "LINKS": "Links with Trello",
+                "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Trello card?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
-                "CHOOSE": "Elegir"
+                "CHOOSE": "Choose"
+            },
+            "JIRA": {
+                "TITLE": "Jira",
+                "CHOOSE_PROJECT": "Choose project or board that you want to import",
+                "LINKS": "Links with Jira",
+                "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Jira issue?",
+                "PROJECT_MEMBERS": "Project Members",
+                "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
+                "CHOOSE": "Choose"
             }
         }
     },
