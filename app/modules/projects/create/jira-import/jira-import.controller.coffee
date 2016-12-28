@@ -29,7 +29,7 @@ class JiraImportController
 
     startProjectSelector: () ->
         @.step = 'project-select-jira'
-        #@jiraImportService.fetchProjects()
+        @jiraImportService.fetchProjects()
 
     onSelectProject: (project) ->
         @.step = 'project-form-jira'
