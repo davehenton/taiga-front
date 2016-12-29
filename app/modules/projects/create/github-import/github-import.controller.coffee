@@ -52,6 +52,7 @@ class GithubImportController
             users,
             @.project.get('keepExternalReference'),
             @.project.get('is_private')
+            @.project.get('project_type')
         ).then (project) =>
             loader.stop()
             @location.url(@projectUrl.get(project))

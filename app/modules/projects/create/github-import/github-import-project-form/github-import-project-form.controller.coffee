@@ -31,6 +31,7 @@ class GithubImportProjectFormController
         @.projectForm.is_private = false
         # @.projectForm.archived = false
         @.projectForm.keepExternalReference = false
+        @.projectForm.project_type = "scrum"
 
     saveProjectDetails: (project) ->
         @.onSaveProjectDetails({project: Immutable.fromJS(project)})

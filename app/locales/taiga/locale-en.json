@@ -1010,6 +1010,9 @@
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Github issue?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
+                "KANBAN_PROJECT": "Kanban",
+                "SCRUM_PROJECT": "Scrum",
+                "ISSUES_PROJECT": "Issues",
                 "CHOOSE": "Choose"
             },
             "JIRA": {
