@@ -21,31 +21,36 @@ class ImportProjectController
     @.$inject = [
         'tgTrelloImportService',
         'tgJiraImportService',
+        'tgGithubImportService',
         '$location',
         '$window',
     ]
 
-    constructor: (@trelloService, @jiraService, @location, @window) ->
+    constructor: (@trelloService, @jiraService, @githubService, @location, @window) ->
 
     start: ->
         @.from = null
-        verifyCode = @location.search().oauth_verifier
+        trelloOauthToken = @location.search().oauth_verifier
         jiraOauthToken = @location.search().oauth_token
+        githubOauthToken = @location.search().code
         token = @location.search().token
-        jiraToken = @location.search().jiraToken
 
         if token
             # @.from = @location.search().from
             @.from = @location.search().from
             @.token = token
 
-        if verifyCode
-            return @trelloService.authorize(verifyCode).then (token) =>
+        if trelloOauthToken
+            return @trelloService.authorize(trelloOauthToken).then (token) =>
                 @location.search({from: "trello", token: token})
 
         if jiraOauthToken
-            @jiraService.authorize().then (data) =>
+            return @jiraService.authorize().then (data) =>
                 @location.search({from: "jira", token: data.token, url: data.url})
+
+        if githubOauthToken
+            return @githubService.authorize(githubOauthToken).then (token) =>
+                @location.search({from: "github", token: token})
 
     select: (from) ->
         if from == "trello"
@@ -53,6 +58,10 @@ class ImportProjectController
                 @window.open(url, "_self")
         else if from == "jira"
             @jiraService.getAuthUrl(@.jiraUrl).then (url) =>
+                @window.open(url, "_self")
+        else if from == "github"
+            callbackUri = @location.absUrl()
+            @githubService.getAuthUrl(callbackUri).then (url) =>
                 @window.open(url, "_self")
         else
             @.from = from

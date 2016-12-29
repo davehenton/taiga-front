@@ -1,0 +1,42 @@
+$project-row-height: 50px;
+
+tg-github-import-project-selector {
+    .choose-board {
+        @include font-type(bold);
+    }
+    .search-project-field {
+        fieldset {
+            position: relative;
+        }
+        input {
+            border-color: $whitish;
+            border-width: 0 0 2px;
+            width: 100%;
+            &:focus {
+                border-color: $gray;
+                outline: none;
+                transition: border-bottom .2s linear;
+            }
+        }
+        tg-svg {
+            position: absolute;
+            right: .7rem;
+            top: .2rem;
+        }
+    }
+    .projects-list {
+        height: $project-row-height * 5;
+        margin-top: 1rem;
+        overflow-y: auto;
+    }
+    .project-name {
+        line-height: $project-row-height;
+    }
+    .cancel-import {
+        text-align: center;
+        .button {
+            background-color: $whitish;
+            color: $black;
+        }
+    }
+}

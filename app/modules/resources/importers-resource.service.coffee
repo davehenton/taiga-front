@@ -80,8 +80,12 @@ JiraResource = (urlsService, http) ->
         url = urlsService.resolve("importers-jira-list-users")
         return http.post(url, {url: jira_url, token: token, project: projectId}).then (response) -> Immutable.fromJS(response.data)
 
-    service.importProject = (jira_url, token, projectId, userBindings, keepExternalReference, isPrivate) ->
+    service.importProject = (jira_url, token, projectId, userBindings, keepExternalReference, isPrivate, projectType) ->
         url = urlsService.resolve("importers-jira-import-project")
+        projectTemplate = "kanban"
+        if projectType != "kanban"
+            projectTemplate = "scrum"
+
         data = {
             url: jira_url,
             token: token,
@@ -89,7 +93,8 @@ JiraResource = (urlsService, http) ->
             user_bindings: userBindings.toJS(),
             keep_external_reference: keepExternalReference,
             is_private: isPrivate,
-            template: "kanban",
+            project_type: projectType,
+            template: projectTemplate,
         }
         return http.post(url, data)
 
@@ -98,6 +103,44 @@ JiraResource = (urlsService, http) ->
 
 JiraResource.$inject = ["$tgUrls", "$tgHttp"]
 
+GithubResource = (urlsService, http) ->
+    service = {}
+
+    service.getAuthUrl = (callbackUri) ->
+        url = urlsService.resolve("importers-github-auth-url") + "?uri=" + callbackUri
+        return http.get(url)
+
+    service.authorize = (code) ->
+        url = urlsService.resolve("importers-github-authorize")
+        return http.post(url, {code: code})
+
+    service.listProjects = (token) ->
+        url = urlsService.resolve("importers-github-list-projects")
+        return http.post(url, {token: token}).then (response) -> Immutable.fromJS(response.data)
+
+    service.listUsers = (token, projectId) ->
+        url = urlsService.resolve("importers-github-list-users")
+        return http.post(url, {token: token, project: projectId}).then (response) -> Immutable.fromJS(response.data)
+
+    service.importProject = (token, projectId, userBindings, keepExternalReference, isPrivate, projectType) ->
+        url = urlsService.resolve("importers-github-import-project")
+
+        data = {
+            token: token,
+            project: projectId,
+            user_bindings: userBindings.toJS(),
+            keep_external_reference: keepExternalReference,
+            is_private: isPrivate,
+            template: projectType,
+        }
+        return http.post(url, data)
+
+    return () ->
+        return {"githubImporter": service}
+
+GithubResource.$inject = ["$tgUrls", "$tgHttp"]
+
 module = angular.module("taigaResources2")
 module.factory("tgTrelloImportResource", TrelloResource)
 module.factory("tgJiraImportResource", JiraResource)
+module.factory("tgGithubImportResource", GithubResource)

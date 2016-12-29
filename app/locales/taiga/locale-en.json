@@ -1003,6 +1003,15 @@
                 "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
                 "CHOOSE": "Choose"
             },
+            "GITHUB": {
+                "TITLE": "Github",
+                "CHOOSE_BOARD": "Choose project that you want to import",
+                "LINKS": "Links with Github",
+                "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Github issue?",
+                "PROJECT_MEMBERS": "Project Members",
+                "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
+                "CHOOSE": "Choose"
+            },
             "JIRA": {
                 "TITLE": "Jira",
                 "CHOOSE_PROJECT": "Choose project or board that you want to import",
@@ -1010,7 +1019,15 @@
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Jira issue?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
-                "CHOOSE": "Choose"
+                "CHOOSE": "Choose",
+                "KANBAN_PROJECT": "Kanban",
+                "SCRUM_PROJECT": "Scrum",
+                "ISSUES_PROJECT": "Issues",
+                "CREATE_AS_SCRUM_DESCRIPTION": "The issues and sub-issues of your project will be created as Taiga user stories and tasks.",
+                "CREATE_AS_KANBAN_DESCRIPTION": "The issues and sub-issues of your project will be created as Taiga user stories and tasks.",
+                "CREATE_AS_ISSUES_DESCRIPTION": "What do you want to do with sub-issues from the Jira project? (Taiga doesn't allow sub-issues)",
+                "CREATE_NEW_ISSUES": "Create new issues",
+                "NOT_CREATE_NEW_ISSUES": "Not import"
             }
         }
     },

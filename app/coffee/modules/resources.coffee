@@ -216,6 +216,12 @@ urls = {
     "importers-jira-list-projects": "/importers/jira/list_projects"
     "importers-jira-list-users": "/importers/jira/list_users"
     "importers-jira-import-project": "/importers/jira/import_project"
+
+    "importers-github-auth-url": "/importers/github/auth_url"
+    "importers-github-authorize": "/importers/github/authorize"
+    "importers-github-list-projects": "/importers/github/list_projects"
+    "importers-github-list-users": "/importers/github/list_users"
+    "importers-github-import-project": "/importers/github/import_project"
 }
 
 # Initialize api urls service

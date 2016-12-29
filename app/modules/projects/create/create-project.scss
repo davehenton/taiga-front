@@ -46,6 +46,15 @@ $create-project-padding: 1.25rem;
         @include font-size(small);
         color: $gray;
     }
+    &-import-type {
+        @include btn-group;
+        input {
+            display: none;
+        }
+        label {
+            background: $mass-white;
+        }
+    }
     &-privacity {
         @include btn-group;
         input {

@@ -17,7 +17,7 @@
                   input(id="jira-host", ng-model="vm.jiraUrl")
                   input(type="button", value="Acceder", ng-click="vm.select('jira')")
             li
-                .import-project-from-site Github
+                .import-project-from-site(ng-click="vm.select('github')") Github
 
 
         a.back(href="") < {{'PROJECT.CREATE.BACK' | translate}}
@@ -29,5 +29,9 @@ tg-trello-import(
 )
 tg-jira-import(
     ng-if="vm.from == 'jira'"
+    on-cancel="vm.onCancel()"
+)
+tg-github-import(
+    ng-if="vm.from == 'github'"
     on-cancel="vm.onCancel()"
 )

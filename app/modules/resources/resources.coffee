@@ -30,7 +30,8 @@ services = [
     "tgWikiHistory",
     "tgEpicsResource",
     "tgTrelloImportResource",
-    "tgJiraImportResource"
+    "tgJiraImportResource",
+    "tgGithubImportResource"
 ]
 
 Resources = ($injector) ->
@@ -41,7 +42,7 @@ Resources = ($injector) ->
 
         for serviceProperty in Object.keys(service)
             if @[serviceProperty]
-                console.warm("repeated resource " + serviceProperty)
+                console.warn("repeated resource " + serviceProperty)
 
             @[serviceProperty] = service[serviceProperty]
 
