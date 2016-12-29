@@ -35,9 +35,9 @@ class JiraImportService extends taiga.Service
     fetchUsers: (projectId) ->
         @resources.jiraImporter.listUsers(@.url, @.token, projectId).then (users) => @.projectUsers = users
 
-    importProject: (projectId, userBindings, keepExternalReference, isPrivate) ->
+    importProject: (projectId, userBindings, keepExternalReference, isPrivate, projectType) ->
         return new Promise (resolve) =>
-            @resources.jiraImporter.importProject(@.url, @.token, projectId, userBindings, keepExternalReference, isPrivate).then (response) =>
+            @resources.jiraImporter.importProject(@.url, @.token, projectId, userBindings, keepExternalReference, isPrivate, projectType).then (response) =>
                 @.importedProject = Immutable.fromJS(response.data)
                 resolve(@.importedProject)
 

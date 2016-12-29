@@ -29,8 +29,9 @@ class JiraImportProjectFormController
         @.projectForm = @.project.toJS()
 
         @.projectForm.is_private = false
-        # @.projectForm.archived = false
         @.projectForm.keepExternalReference = false
+        @.projectForm.project_type = "scrum"
+        @.projectForm.create_subissues = true
 
     saveProjectDetails: (project) ->
         @.onSaveProjectDetails({project: Immutable.fromJS(project)})

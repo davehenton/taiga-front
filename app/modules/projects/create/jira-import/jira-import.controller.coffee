@@ -47,11 +47,16 @@ class JiraImportController
         loader.start()
         loader.update('', @translate.instant('PROJECT.IMPORT.IN_PROGRESS.TITLE'), @translate.instant('PROJECT.IMPORT.IN_PROGRESS.DESCRIPTION'))
 
+        projectType = @.project.get('project_type')
+        if projectType == "issues" and @.project.get('create_subissues')
+            projectType = "issues-with-subissues"
+
         @jiraImportService.importProject(
             @.project.get('id'),
             users,
             @.project.get('keepExternalReference'),
-            @.project.get('is_private')
+            @.project.get('is_private'),
+            projectType
         ).then (project) =>
             loader.stop()
             @location.url(@projectUrl.get(project))
