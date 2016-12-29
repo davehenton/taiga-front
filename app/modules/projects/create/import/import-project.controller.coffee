@@ -36,7 +36,6 @@ class ImportProjectController
         token = @location.search().token
 
         if token
-            # @.from = @location.search().from
             @.from = @location.search().from
             @.token = token
 
@@ -60,7 +59,7 @@ class ImportProjectController
             @jiraService.getAuthUrl(@.jiraUrl).then (url) =>
                 @window.open(url, "_self")
         else if from == "github"
-            callbackUri = @location.absUrl()
+            callbackUri = @location.absUrl() + "?from=github"
             @githubService.getAuthUrl(callbackUri).then (url) =>
                 @window.open(url, "_self")
         else
