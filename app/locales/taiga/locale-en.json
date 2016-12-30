@@ -1010,9 +1010,13 @@
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Github issue?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
-                "KANBAN_PROJECT": "Kanban",
-                "SCRUM_PROJECT": "Scrum",
-                "ISSUES_PROJECT": "Issues",
+                "HOW_DO_YOU_WANT_TO_IMPORT": "How do you want to import your issues into Taiga?",
+                "KANBAN_PROJECT": "As user stories in a kanban project",
+                "KANBAN_PROJECT_DESCRIPTION": "After that you can enable scrum with backlog.",
+                "SCRUM_PROJECT": "As user stories in a scrum project",
+                "SCRUM_PROJECT_DESCRIPTION": "After that you can enable kanban mode.",
+                "ISSUES_PROJECT": "As issues",
+                "ISSUES_PROJECT_DESCRIPTION": "You will not able to use your issues in kanban or scrum mode because in Taiga this is in other module. You will be able to enable kanban or scrum for new user stories",
                 "CHOOSE": "Choose"
             },
             "JIRA": {
