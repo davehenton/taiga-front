@@ -68,7 +68,11 @@ class ImportProjectController
     unfoldOptions: (options) ->
         @.unfoldedOptions = options
 
-    onCancel: () ->
+    cancelImporter: () ->
         @.from = null
+        @location.search({})
+
+    cancelImport: () ->
+        @.onCancel()
 
 angular.module("taigaProjects").controller("ImportProjectCtrl", ImportProjectController)

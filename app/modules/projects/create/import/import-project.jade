@@ -20,18 +20,18 @@
                 .import-project-from-site(ng-click="vm.select('github')") Github
 
 
-        a.back(href="") < {{'PROJECT.CREATE.BACK' | translate}}
+        a.back(href="#" ng-click="vm.cancelImport()") < {{'PROJECT.CREATE.BACK' | translate}}
 
 
 tg-trello-import(
     ng-if="vm.from == 'trello'"
-    on-cancel="vm.onCancel()"
+    on-cancel="vm.cancelImporter()"
 )
 tg-jira-import(
     ng-if="vm.from == 'jira'"
-    on-cancel="vm.onCancel()"
+    on-cancel="vm.cancel()"
 )
 tg-github-import(
     ng-if="vm.from == 'github'"
-    on-cancel="vm.onCancel()"
+    on-cancel="vm.cancel()"
 )

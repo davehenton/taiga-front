@@ -29,7 +29,7 @@ ImportProjectDirective = () ->
         controllerAs: "vm",
         bindToController: true,
         scope: {
-            onCancelProjectDuplication: '&'
+            onCancel: '&'
         }
     }
 
