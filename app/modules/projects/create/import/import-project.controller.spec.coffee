@@ -31,6 +31,22 @@ describe "ImportProjectCtrl", ->
 
         $provide.value("tgTrelloImportService", mocks.trelloService)
 
+    _mockJiraImportService = ->
+        mocks.jiraService = {
+            authorize: sinon.stub(),
+            getAuthUrl: sinon.stub()
+        }
+
+        $provide.value("tgJiraImportService", mocks.jiraService)
+
+    _mockGithubImportService = ->
+        mocks.githubService = {
+            authorize: sinon.stub(),
+            getAuthUrl: sinon.stub()
+        }
+
+        $provide.value("tgGithubImportService", mocks.githubService)
+
     _mockWindow = ->
         mocks.window = {
             open: sinon.stub()
@@ -50,6 +66,8 @@ describe "ImportProjectCtrl", ->
             $provide = _$provide_
 
             _mockTrelloImportService()
+            _mockJiraImportService()
+            _mockGithubImportService()
             _mockWindow()
             _mockLocation()
 
@@ -68,7 +86,7 @@ describe "ImportProjectCtrl", ->
 
         _setup()
 
-    it "initialize form", (done) ->
+    it "initialize form with trello", (done) ->
         searchResult = {
             oauth_verifier: 123,
             token: "token"
@@ -79,9 +97,40 @@ describe "ImportProjectCtrl", ->
 
         ctrl = $controller("ImportProjectCtrl")
         ctrl.start().then () ->
-            expect(ctrl.from).to.be.equal("trello")
             expect(ctrl.token).to.be.equal("token")
             expect(mocks.location.search).have.been.calledWith({from: "trello", token: "token2"})
+
+            done()
+
+    it "initialize form with jira", (done) ->
+        searchResult = {
+            oauth_token: 123,
+            token: "token"
+        }
+
+        mocks.location.search.returns(searchResult)
+        mocks.jiraService.authorize.withArgs().promise().resolve({"token": "token2", "url": "http://test"})
+
+        ctrl = $controller("ImportProjectCtrl")
+        ctrl.start().then () ->
+            expect(ctrl.token).to.be.equal("token")
+            expect(mocks.location.search).have.been.calledWith({from: "jira", token: "token2", url: "http://test"})
+
+            done()
+
+    it "initialize form with github", (done) ->
+        searchResult = {
+            code: 123,
+            token: "token"
+        }
+
+        mocks.location.search.returns(searchResult)
+        mocks.githubService.authorize.withArgs(123).promise().resolve("token2")
+
+        ctrl = $controller("ImportProjectCtrl")
+        ctrl.start().then () ->
+            expect(ctrl.token).to.be.equal("token")
+            expect(mocks.location.search).have.been.calledWith({from: "github", token: "token2"})
 
             done()
 
