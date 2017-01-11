@@ -5,23 +5,22 @@
         h1
             tg-svg(svg-icon="icon-upload")
             span(translate="PROJECT.IMPORT.IMPORT")
-        ul
-            li
-                .import-project-from-site Taiga
-            li
-                .import-project-from-site(ng-click="vm.select('trello')") Trello
-            li
-                .import-project-from-site(ng-click="vm.unfoldOptions('jira')") Jira
-                div(ng-if="vm.unfoldedOptions == 'jira'")
-                  label(for="jira-host") Tu URL de Jira
-                  input(id="jira-host", ng-model="vm.jiraUrl")
-                  input(type="button", value="Acceder", ng-click="vm.select('jira')")
-            li
-                .import-project-from-site(ng-click="vm.select('github')") Github
-
-
-        a.back(href="#" ng-click="vm.cancelImport()") < {{'PROJECT.CREATE.BACK' | translate}}
-
+            ul.import-project-from
+                li.import-project-from-site Taiga
+                li.import-project-from-site(ng-click="vm.select('trello')") Trello
+                li.import-project-from-site(ng-click="vm.unfoldOptions('jira')") Jira
+                    div(ng-if="vm.unfoldedOptions == 'jira'")
+                        label(for="jira-host") Tu URL de Jira
+                        input(id="jira-host", ng-model="vm.jiraUrl")
+                        input(type="button", value="Acceder", ng-click="vm.select('jira')")
+                li.import-project-from-site(ng-click="vm.select('github')") Github
+            
+            button.trans-button.create-project-action-back(
+                type="button"
+                ng-click="vm.cancelImport()"
+                title="{{'PROJECT.CREATE.BACK' | translate}}"
+                translate="PROJECT.CREATE.BACK"
+            )
 
 tg-trello-import(
     ng-if="vm.from == 'trello'"

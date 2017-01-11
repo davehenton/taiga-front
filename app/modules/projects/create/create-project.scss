@@ -3,84 +3,105 @@ $create-project-padding: 1.25rem;
 .create-project {
     @include centered;
     max-width: 800px;
+
     fieldset {
         margin-bottom: 1rem;
     }
+
     label {
         @include font-type(bold);
         @include font-size(small);
         display: block;
         margin-bottom: .25rem;
+
         .mumble {
             @include font-type(light);
             margin-left: .25rem;
         }
     }
+
     &-check {
         position: relative;
+
         span {
             display: block;
         }
+
         .description {
             @include font-type(normal);
         }
+
         .check {
             bottom: 0;
             position: absolute;
             right: 0;
         }
     }
-    &-title,
-    &-description {
+
+    &-description,
+    &-title {
         text-align: center;
     }
+
     &-title {
+        align-items: center;
+        display: flex;
+        justify-content: center;
         margin-bottom: 0;
+
+        tg-svg {
+            display: flex;
+        }
+
+        .icon {
+            @include svg-size(1.5rem);
+            margin-right: .5rem;
+            vertical-align: middle;
+        }
     }
+
     &-description {
         color: $gray-light;
         margin-bottom: 2rem;
     }
+
     &-limit {
         @include font-type(light);
         @include font-size(small);
         color: $gray;
     }
+
     &-import-type {
         @include btn-group;
+
         input {
             display: none;
         }
+
         label {
             background: $mass-white;
         }
     }
+
     &-github-import-type {
         @include btn-group;
         display: block;
         margin: 10px 0 20px;
+
         .question {
             @include font-type(bold);
         }
+
         fieldset {
             border-bottom: 1px solid $whitish;
             margin: 0;
             padding: 0;
-            &:nth-child(2) {
-                label {
-                    border-radius: .25rem .25rem 0 0;
-                }
-            }
-            &:last-child {
-                border-bottom: 0;
-                label {
-                    border-radius: 0 0 .25rem .25rem;
-                }
-            }
         }
+
         input {
             display: none;
         }
+
         label {
             align-content: center;
             align-items: flex-start;
@@ -89,9 +110,11 @@ $create-project-padding: 1.25rem;
             flex-direction: column;
             margin: 0;
             text-transform: none;
+
             span {
                 @include font-type(bold);
             }
+
             p {
                 @include font-type(light);
                 margin: 0;
@@ -99,15 +122,19 @@ $create-project-padding: 1.25rem;
             }
         }
     }
+
     &-privacity {
         @include btn-group;
+
         input {
             display: none;
         }
+
         label {
             background: $mass-white;
         }
     }
+
     &-type {
         @include font-type(bold);
         align-items: center;
@@ -115,6 +142,7 @@ $create-project-padding: 1.25rem;
         justify-content: center;
         margin-bottom: 2rem;
         text-transform: uppercase;
+
         span {
             margin-left: .5rem;
         }
@@ -129,55 +157,66 @@ $create-project-padding: 1.25rem;
         display: flex;
         margin-bottom: .5rem;
         position: relative;
+
         &:hover {
             background: rgba($primary, .1);
             transition: background .3s ease-in;
         }
     }
+
     &-icon {
         background: rgba($grayer, .1);
         padding: 1.75rem 1.25rem 0;
+
         .icon {
             @include svg-size(1.6rem);
         }
     }
+
     &-template-wrapper {
         flex: 1;
         padding: 1.25rem;
     }
+
     &-template {
         @include font-type(bold);
         text-transform: uppercase;
     }
+
     &-description {
         @include font-type(light);
     }
+
     &-long-description {
         margin-top: 1rem;
         max-height: 120px;
         overflow: hidden;
-        transition: all .3s ease-out;
+        transition: all .3s .2s cubic-bezier(0, 0, .53, 1.32);
+
         &.ng-hide {
             line-height: 0;
             max-height: 0;
         }
     }
+
     &-question {
         position: absolute;
         right: 1.5rem;
         top: 1.5rem;
+
         &:hover {
             svg {
                 fill: $primary;
                 transition: fill .2s linear;
             }
         }
+
         svg {
             @include svg-size(1.2rem);
             fill: $grayer;
-
         }
     }
+
     p {
         margin-bottom: 0;
     }
@@ -186,16 +225,28 @@ $create-project-padding: 1.25rem;
 .create-project-action {
     display: flex;
     margin-bottom: 0;
+
     button {
         @include font-size(large);
         padding: 12px;
     }
-    .create-project-action-submit {
+
+    &-submit {
         flex: 4;
         margin-left: 1rem;
     }
-    .create-project-action-cancel {
+
+    &-cancel,
+    &-back {
         color: currentColor;
+        &:hover {
+            color: $primary-light;
+        }
+    }
+    &-cancel {
         flex: 1;
+    }
+    &-back {
+        width: 10%;
     }
 }
