@@ -30,7 +30,7 @@ describe "DuplicateProjectController", ->
         mocks.currentUserService.canCreatePrivateProjects = sinon.stub().returns(true)
 
         mocks.currentUserService.projects = {}
-        mocks.currentUserService.projects.get = sinon.stub()
+        mocks.currentUserService.projects.get = sinon.stub().returns([])
 
         mocks.currentUserService.loadProjects = sinon.stub()
 
