@@ -18,11 +18,9 @@
 ###
 
 class GithubImportProjectMembersController
-    @.$inject = [
-        'tgGithubImportService'
-    ]
+    @.$inject = []
 
-    constructor: (@githubImportService) ->
+    constructor: () ->
         @.selectImportUserLightbox = false
         @.warningImportUsers = false
         @.selectedUsers = Immutable.List()

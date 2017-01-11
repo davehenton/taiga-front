@@ -41,7 +41,7 @@ class GithubImportController
 
         @githubImportService.fetchUsers(@.project.get('id'))
 
-    onSelectUsers: (users) ->
+    startImport: (users) ->
         loader = @confirm.loader('sdfdsfdsfjk dfksj')
 
         loader.start()
@@ -57,6 +57,8 @@ class GithubImportController
             loader.stop()
             @location.url(@projectUrl.get(project))
 
+    onSelectUsers: (users) ->
+        @.startImport(users)
         return null
 
 angular.module('taigaProjects').controller('GithubImportCtrl', [

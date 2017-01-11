@@ -41,7 +41,7 @@ class JiraImportController
 
         @jiraImportService.fetchUsers(@.project.get('id'))
 
-    onSelectUsers: (users) ->
+    startImport: (users) ->
         loader = @confirm.loader('sdfdsfdsfjk dfksj')
 
         loader.start()
@@ -60,6 +60,9 @@ class JiraImportController
         ).then (project) =>
             loader.stop()
             @location.url(@projectUrl.get(project))
+
+    onSelectUsers: (users) ->
+        @.startImport(users)
 
         return null
 

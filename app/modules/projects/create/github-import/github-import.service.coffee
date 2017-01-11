@@ -42,7 +42,6 @@ class GithubImportService extends taiga.Service
 
     getAuthUrl: (callbackUri) ->
         return new Promise (resolve) =>
-            console.log(@resources)
             @resources.githubImporter.getAuthUrl(callbackUri).then (response) =>
                 @.authUrl = response.data.url
                 resolve(@.authUrl)

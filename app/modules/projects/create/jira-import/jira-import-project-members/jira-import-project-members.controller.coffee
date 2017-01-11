@@ -18,11 +18,9 @@
 ###
 
 class JiraImportProjectMembersController
-    @.$inject = [
-        'tgJiraImportService'
-    ]
+    @.$inject = []
 
-    constructor: (@jiraImportService) ->
+    constructor: () ->
         @.selectImportUserLightbox = false
         @.warningImportUsers = false
         @.selectedUsers = Immutable.List()
