@@ -939,7 +939,7 @@
             "DUPLICATE": "Duplicate project",
             "DUPLICATE_DESC": "Start clean and keep your configuration",
             "IMPORT": "Import project",
-            "IMPORT_DESC": "Import from Taiga, Trello, Jira, Github, Pivotal Tracker, Asana...",
+            "IMPORT_DESC": "Import from Taiga, Trello, Jira, Github...",
             "INVITE": "Invite to the project",
             "SOLO_PROJECT": "You'll be alone in this project",
             "INVITE_LATER": "(You'll be able to invite more members later)",
@@ -976,7 +976,7 @@
         },
         "IMPORT": {
             "TITLE": "Import Project",
-            "DESCRIPTION": "Fresh and clean. So exciting!",
+            "DESCRIPTION": "Import from Taiga, Trello, Jira, Github...",
             "IMPORT": "Import",
             "ARCHIVED": "Archived",
             "ARCHIVED_DESCRIPTION": "You have archived projects, Do you want to import your archived projects?",
@@ -985,6 +985,7 @@
             "SEARCH_CONTACT": "Or if you want, search in your contacts",
             "WRITE_EMAIL_LABEL": "Write the email that their use in Taiga",
             "EMAIL_NOT_FOUND": "We did not find any users with that email",
+            "ACCEEDE": "Acceede",
             "IN_PROGRESS": {
                 "TITLE": "Importing Project",
                 "DESCRIPTION": "This process can take a while, please keep the window open."
@@ -994,8 +995,12 @@
                 "DESCRIPTION": "There are still unidentified people. The cards assigned to these people will remain unassigned. Check all the contacts to not lose that information.",
                 "CHECK": "Check contacts"
             },
+            "TAIGA": {
+                "SELECTOR": "Import your Taiga project"
+            },
             "TRELLO": {
                 "TITLE": "Trello",
+                "SELECTOR": "Import your Trello boards into Taiga",
                 "CHOOSE_BOARD": "Choose board that you want to import",
                 "LINKS": "Links with Trello",
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Trello card?",
@@ -1005,6 +1010,7 @@
             },
             "GITHUB": {
                 "TITLE": "Github",
+                "SELECTOR": "Import your Github project issues",
                 "CHOOSE_BOARD": "Choose project that you want to import",
                 "LINKS": "Links with Github",
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Github issue?",
@@ -1022,6 +1028,8 @@
             "JIRA": {
                 "TITLE": "Jira",
                 "CHOOSE_PROJECT": "Choose project or board that you want to import",
+                "SELECTOR": "Import your Jira project and choose how to manage it",
+                "URL": "Your Jira URL",
                 "LINKS": "Links with Jira",
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Jira issue?",
                 "PROJECT_MEMBERS": "Project Members",

@@ -1,26 +1,77 @@
 .create-project.import-project(ng-if="!vm.from")
     div(ng-include="'projects/create/import/import-header.html'")
-
-    section.import-project-from
-        h1
-            tg-svg(svg-icon="icon-upload")
-            span(translate="PROJECT.IMPORT.IMPORT")
-            ul.import-project-from
-                li.import-project-from-site Taiga
-                li.import-project-from-site(ng-click="vm.select('trello')") Trello
-                li.import-project-from-site(ng-click="vm.unfoldOptions('jira')") Jira
-                    div(ng-if="vm.unfoldedOptions == 'jira'")
-                        label(for="jira-host") Tu URL de Jira
-                        input(id="jira-host", ng-model="vm.jiraUrl")
-                        input(type="button", value="Acceder", ng-click="vm.select('jira')")
-                li.import-project-from-site(ng-click="vm.select('github')") Github
             
-            button.trans-button.create-project-action-back(
-                type="button"
-                ng-click="vm.cancelImport()"
-                title="{{'PROJECT.CREATE.BACK' | translate}}"
-                translate="PROJECT.CREATE.BACK"
-            )
+    ul.import-project-from
+        li.import-project-from-site
+            .import-project-logo
+                img(
+                    src="/#{v}/images/logo-color.png"
+                    alt="Taiga Logo"
+                )
+            .import-project-name-wrapper
+                a.import-project-name(
+                    href="#"
+                    title="Taiga"
+                ) Taiga
+                p.import-project-description(translate="PROJECT.IMPORT.TAIGA.SELECTOR")
+        li.import-project-from-site(ng-click="vm.select('trello')")
+            .import-project-logo
+                img(
+                    src="/#{v}/images/import-logos/trello.png"
+                    alt="Trello Logo"
+                )
+            .import-project-name-wrapper
+                a.import-project-name(
+                    href="#"
+                    title="Trello"
+                ) Trello
+                p.import-project-description(translate="PROJECT.IMPORT.TRELLO.SELECTOR")
+        li.import-project-from-site(ng-click="vm.unfoldOptions('jira')")
+            .import-project-logo
+                img(
+                    src="/#{v}/images/import-logos/jira.png"
+                    alt="Jira Logo"
+                )
+            .import-project-name-wrapper
+                a.import-project-name(
+                    href="#"
+                    title="Jira"
+                ) Jira
+                p.import-project-description(translate="PROJECT.IMPORT.JIRA.SELECTOR")
+                fieldset.import-project-url(ng-if="vm.unfoldedOptions == 'jira'")
+                    label(
+                        for="jira-host"
+                        translate="PROJECT.IMPORT.JIRA.URL"
+                    )
+                    input.import-project-input(
+                        id="jira-host"
+                        ng-model="vm.jiraUrl"
+                    )
+                    button.button-green.import-project-button(
+                        ng-click="vm.select('jira')"
+                        title="{{'PROJECT.IMPORT.ACCEEDE' | translate}}"
+                        translate="PROJECT.IMPORT.ACCEEDE"
+                    )
+        li.import-project-from-site(ng-click="vm.select('github')")
+            .import-project-logo
+                img(
+                    src="/#{v}/images/import-logos/github.png"
+                    alt="Github Logo"
+                )
+            .import-project-name-wrapper
+                a.import-project-name(
+                    href="#"
+                    title="Github"
+                ) Github
+                p.import-project-description(translate="PROJECT.IMPORT.GITHUB.SELECTOR")
+        
+    .create-project-action
+        button.trans-button.create-project-action-back(
+            type="button"
+            ng-click="vm.cancelImport()"
+            title="{{'PROJECT.CREATE.BACK' | translate}}"
+            translate="PROJECT.CREATE.BACK"
+        )
 
 tg-trello-import(
     ng-if="vm.from == 'trello'"

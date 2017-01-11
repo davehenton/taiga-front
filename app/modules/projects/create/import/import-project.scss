@@ -1,14 +1,47 @@
 .import-project {
     &-from-site {
-        background: $mass-white;
+        align-items: center;
+        border-bottom: 1px solid $whitish;
         color: $grayer;
         cursor: pointer;
         display: flex;
-        margin-bottom: .5rem;
-        padding: 1.5rem;
+        padding: 1rem;
+        position: relative;
+
         &:hover {
             background: rgba($primary, .1);
             transition: background .3s ease-in;
         }
+        &:first-child {
+            border-top: 1px solid $whitish;
+        }
+    }
+    &-logo {
+        align-self: flex-start;
+        img {
+            height: 3.25rem;
+            padding: 0 1rem;
+        }
+    }
+    &-name-wrapper {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: center;
+    }
+    &-description {
+        @include font-type(light);
+        margin-bottom: 0;
+    }
+    &-url {
+        margin-top: .5rem;
+    }
+    &-input {
+        vertical-align: middle;
+    }
+    &-button {
+        background: $primary;
+        color: $white;
+        padding: .25rem 1rem;
     }
 }

@@ -151,25 +151,29 @@ $create-project-padding: 1.25rem;
 
 .create-project-selector {
     li {
-        background: $mass-white;
+        align-items: center;
+        border-bottom: 1px solid $whitish;
         color: $grayer;
         cursor: pointer;
         display: flex;
-        margin-bottom: .5rem;
+        justify-content: center;
         position: relative;
 
         &:hover {
             background: rgba($primary, .1);
             transition: background .3s ease-in;
         }
+        &:first-child {
+            border-top: 1px solid $whitish;
+        }
     }
 
     &-icon {
-        background: rgba($grayer, .1);
-        padding: 1.75rem 1.25rem 0;
+        align-self: flex-start;
+        padding: 1.5rem 1rem;
 
         .icon {
-            @include svg-size(1.6rem);
+            @include svg-size(2.25rem);
         }
     }
 
@@ -228,7 +232,7 @@ $create-project-padding: 1.25rem;
 
     button {
         @include font-size(large);
-        padding: 12px;
+        padding: .75rem;
     }
 
     &-submit {
