@@ -1,30 +1,34 @@
-.create-project.import-project
+.import-project
     div(ng-include="'projects/create/import/import-header.html'")
 
-    section.import-project-from
-        h1
-            tg-svg(svg-icon="icon-upload")
-            span(translate="PROJECT.IMPORT.JIRA.TITLE")
-
-        p.choose-board(translate="PROJECT.IMPORT.JIRA.CHOOSE_PROJECT")
-
-        form.search-project-field(ng-if="vm.projects.size > 5")
-            fieldset
+    section.import-project-board
+    
+        .import-project-board-service
+            img(
+                src="/#{v}/images/import-logos/jira.png"
+                alt="Jira Logo"
+            )
+        .import-project-board-selector(ng-if="vm.projects.size > 5")
+            form.import-project-board-filter
                 input(
                     ng-model="vm.searchText"
+                    placeholder="{{ 'PROJECT.IMPORT.JIRA.CHOOSE_PROJECT' | translate }}"
+                )
+                tg-svg(
+                    svg-icon="icon-search"
+                    title="{{'SEARCH.TITLE_ACTION_SEARCH' | translate}}"
                 )
 
-                tg-svg(svg-icon="icon-search", title="{{'SEARCH.TITLE_ACTION_SEARCH' | translate}}")
+            ul.import-project-board-list
+                li.import-project-board-title(
+                    ng-repeat="project in vm.projects | toMutable | orderBy:'name' | filter:vm.searchText track by project.id"
+                    ng-click="vm.selectProject(project)"
+                ) {{project.name}}
 
-        ul.projects-list
-            li.project-name(
-                ng-repeat="project in vm.projects | toMutable | orderBy:'name' | filter:vm.searchText track by project.id"
-                ng-click="vm.selectProject(project)"
-            ) {{project.name}}
-
-        p.cancel-import
-            a.button(
-                ng-click="vm.onCancel()"
-                href="",
-                translate="COMMON.CANCEL"
-            )
+            .create-project-action
+                button.trans-button.create-project-action-cancel(
+                    type="button"
+                    ng-click="vm.onCancel()"
+                    title="{{'COMMON.CANCEL' | translate}}"
+                    translate="COMMON.CANCEL"
+                )

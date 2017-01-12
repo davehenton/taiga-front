@@ -1,42 +1,49 @@
-$project-row-height: 50px;
+.import-project {
+    @include centered;
+    max-width: 800px;
+}
 
-tg-jira-import-project-selector {
-    .choose-board {
-        @include font-type(bold);
-    }
-    .search-project-field {
-        fieldset {
-            position: relative;
+.import-project-board {
+    display: flex;
+
+    &-service {
+        img {
+            padding-right: 1rem;
+            width: 4rem;
         }
+    }
+
+    &-selector {
+        flex: 1;
+    }
+
+    &-filter {
+        align-items: center;
+        background: $whitish;
+        display: flex;
+        padding: .5rem;
+
         input {
-            border-color: $whitish;
-            border-width: 0 0 2px;
-            width: 100%;
-            &:focus {
-                border-color: $gray;
-                outline: none;
-                transition: border-bottom .2s linear;
-            }
+            background: $mass-white;
+            border: 0;
+            flex: 1;
+            padding: .5rem;
         }
-        tg-svg {
-            position: absolute;
-            right: .7rem;
-            top: .2rem;
+
+        svg {
+            @include svg-size(1rem);
+            fill: $gray;
+            margin: 0 1rem;
         }
     }
-    .projects-list {
-        height: $project-row-height * 5;
-        margin-top: 1rem;
-        overflow-y: auto;
-    }
-    .project-name {
-        line-height: $project-row-height;
-    }
-    .cancel-import {
-        text-align: center;
-        .button {
-            background-color: $whitish;
-            color: $black;
+
+    &-title {
+        border-bottom: 1px solid $whitish;
+        padding: 1rem;
+
+        &:hover {
+            background: rgba($primary, .1);
+            cursor: pointer;
         }
     }
 }
