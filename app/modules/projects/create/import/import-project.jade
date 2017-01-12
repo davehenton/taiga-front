@@ -79,9 +79,9 @@ tg-trello-import(
 )
 tg-jira-import(
     ng-if="vm.from == 'jira'"
-    on-cancel="vm.cancel()"
+    on-cancel="vm.cancelImporter()"
 )
 tg-github-import(
     ng-if="vm.from == 'github'"
-    on-cancel="vm.cancel()"
+    on-cancel="vm.cancelImporter()"
 )
