@@ -1005,7 +1005,7 @@
                 "LINKS": "Links with Trello",
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Trello card?",
                 "PROJECT_MEMBERS": "Project Members",
-                "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
+                "PROCESS_DESCRIPTION": "Match these Trello users with their user in Taiga so we can assign the tasks correctly",
                 "CHOOSE": "Choose"
             },
             "GITHUB": {
@@ -1015,7 +1015,7 @@
                 "LINKS": "Links with Github",
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Github issue?",
                 "PROJECT_MEMBERS": "Project Members",
-                "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
+                "PROCESS_DESCRIPTION": "Match these Github users with their user in Taiga so we can assign the tasks correctly",
                 "HOW_DO_YOU_WANT_TO_IMPORT": "How do you want to import your issues into Taiga?",
                 "KANBAN_PROJECT": "As user stories in a kanban project",
                 "KANBAN_PROJECT_DESCRIPTION": "After that you can enable scrum with backlog.",
@@ -1033,7 +1033,7 @@
                 "LINKS": "Links with Jira",
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Jira issue?",
                 "PROJECT_MEMBERS": "Project Members",
-                "PROCESS_DESCRIPTION": "Tell us who these people are in Taiga so we can assign them tasks.",
+                "PROCESS_DESCRIPTION": "Match these Jira users with their user in Taiga so we can assign the tasks correctly",
                 "CHOOSE": "Choose",
                 "KANBAN_PROJECT": "Kanban",
                 "SCRUM_PROJECT": "Scrum",

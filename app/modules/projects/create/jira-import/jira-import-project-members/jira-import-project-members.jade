@@ -4,10 +4,19 @@
     h2(translate="PROJECT.IMPORT.JIRA.PROJECT_MEMBERS")
     p.process-description(translate="PROJECT.IMPORT.JIRA.PROCESS_DESCRIPTION")
 
-    p.importer-name(translate="PROJECT.IMPORT.JIRA.TITLE")
-
     .spin(tg-loading="!!!vm.members.size")
-
+    
+    .import-project-system(ng-if="vm.members.size")
+        .import-project-system-logo
+            img(
+                src="/#{v}/images/import-logos/jira.png"
+                alt="Jira Logo"
+            )
+        .import-project-system-logo
+            img(
+                src="/#{v}/images/logo-color.png"
+                alt="Taiga Logo"
+            )
     ul(ng-if="vm.members.size")
         li.user-row(tg-repeat="member in vm.members track by member.get('id')")
             .user-info
@@ -16,12 +25,9 @@
 
             .user-actions
                 .taiga-user(ng-if="vm.getUser(member)")
-                    .img
+                    {{vm.getUser(member).get('full_name')}}
+                    .user-img
                         img(tg-avatar="vm.getUser(member)")
-                    | {{vm.getUser(member).get('full_name')}}
-
-                .check-selected(ng-if="vm.isMemberSelected(member)")
-                    tg-svg(svg-icon="icon-check-empty")
 
                 div(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
                     button.button.button-green(ng-click="vm.confirmUser(member, member.get('user'))")
