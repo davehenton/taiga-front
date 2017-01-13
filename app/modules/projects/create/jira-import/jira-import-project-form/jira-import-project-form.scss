@@ -1,25 +1,30 @@
+.import-project-jira-form {
+    @include create-project;
+}
+
 .create-project-import-type-info {
-    @include font-size(xsmall);
+    @include font-size(small);
     @include font-type(light);
     margin-bottom: 2rem;
 }
 
 .create-project-type-issues-subform {
     margin: 1rem 0 2rem;
+
     &-title {
         @include font-size(small);
         @include font-type(bold);
     }
+
     &-radiogr {
         @include radio-group;
     }
 }
 
-.import-jira {
-    .create-project-import-type {
-        margin-bottom: .25rem;
-        fieldset {
-            margin: 0;
-        }
+.create-project-import-type {
+    margin-bottom: .25rem;
+
+    fieldset {
+        margin: 0;
     }
 }
