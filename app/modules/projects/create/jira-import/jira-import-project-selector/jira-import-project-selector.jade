@@ -1,15 +1,15 @@
-.import-project
+section.import-project-selector-jira
     div(ng-include="'projects/create/import/import-header.html'")
 
-    section.import-project-board
+    .import-project-selector
     
-        .import-project-board-service
+        .import-project-selector-service
             img(
                 src="/#{v}/images/import-logos/jira.png"
                 alt="Jira Logo"
             )
-        .import-project-board-selector(ng-if="vm.projects.size > 5")
-            form.import-project-board-filter
+        .import-project-selector-boards(ng-if="vm.projects.size > 5")
+            form.import-project-selector-filter
                 input(
                     ng-model="vm.searchText"
                     placeholder="{{ 'PROJECT.IMPORT.JIRA.CHOOSE_PROJECT' | translate }}"
@@ -20,7 +20,7 @@
                 )
 
             ul.import-project-board-list
-                li.import-project-board-title(
+                li.import-project-selector-title(
                     ng-repeat="project in vm.projects | toMutable | orderBy:'name' | filter:vm.searchText track by project.id"
                     ng-click="vm.selectProject(project)"
                 ) {{project.name}}

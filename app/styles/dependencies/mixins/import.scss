@@ -1,0 +1,44 @@
+@mixin import-project-selector {
+    @include centered;
+    max-width: 800px;
+    .import-project-selector {
+        display: flex;
+        &-service {
+            img {
+                padding-right: 1rem;
+                width: 4rem;
+            }
+        }
+        &-boards {
+            flex: 1;
+        }
+        &-filter {
+            align-items: center;
+            background: $whitish;
+            display: flex;
+            padding: .5rem;
+
+            input {
+                background: $mass-white;
+                border: 0;
+                flex: 1;
+                padding: .5rem;
+            }
+
+            svg {
+                @include svg-size(1rem);
+                fill: $gray;
+                margin: 0 1rem;
+            }
+        }
+        &-title {
+            border-bottom: 1px solid $whitish;
+            padding: 1rem;
+
+            &:hover {
+                background: rgba($primary, .1);
+                cursor: pointer;
+            }
+        }
+    }
+}

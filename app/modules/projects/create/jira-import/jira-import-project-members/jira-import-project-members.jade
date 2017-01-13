@@ -25,7 +25,7 @@
 
             .user-actions
                 .taiga-user(ng-if="vm.getUser(member)")
-                    {{vm.getUser(member).get('full_name')}}
+                    | {{vm.getUser(member).get('full_name')}}
                     .user-img
                         img(tg-avatar="vm.getUser(member)")
 
