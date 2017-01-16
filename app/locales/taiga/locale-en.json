@@ -1023,7 +1023,8 @@
                 "SCRUM_PROJECT_DESCRIPTION": "After that you can enable kanban mode.",
                 "ISSUES_PROJECT": "As issues",
                 "ISSUES_PROJECT_DESCRIPTION": "You will not able to use your issues in kanban or scrum mode. You will be able to enable kanban or scrum for new user stories",
-                "CHOOSE": "Choose"
+                "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
+                "CHOOSE": "Select user"
             },
             "JIRA": {
                 "TITLE": "Jira",

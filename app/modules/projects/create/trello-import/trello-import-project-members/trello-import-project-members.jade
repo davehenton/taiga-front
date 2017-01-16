@@ -1,27 +1,33 @@
-.create-project.import-project
+.trello-import-project-members
     div(ng-include="'projects/create/import/import-header.html'")
 
-    h2(translate="PROJECT.IMPORT.TRELLO.PROJECT_MEMBERS")
-    p.process-description(translate="PROJECT.IMPORT.TRELLO.PROCESS_DESCRIPTION")
-
-    p.importer-name(translate="PROJECT.IMPORT.TRELLO.TITLE")
+    h2.trello-import-project-members-title(translate="PROJECT.IMPORT.TRELLO.PROJECT_MEMBERS")
+    p(translate="PROJECT.IMPORT.TRELLO.PROCESS_DESCRIPTION")
 
     .spin(tg-loading="!!!vm.members.size")
+    
+    .trello-import-project-members-system(ng-if="vm.members.size")
+        .trello-import-project-members-logo
+            img(
+                src="/#{v}/images/import-logos/trello.png"
+                alt="Trello Logo"
+            )
+        .trello-import-project-members-logo
+            img(
+                src="/#{v}/images/logo-color.png"
+                alt="Taiga Logo"
+            )
 
     ul(ng-if="vm.members.size")
-        li.user-row(tg-repeat="member in vm.members track by member.get('id')")
-            .user-info
+        li.trello-import-project-members-row(tg-repeat="member in vm.members track by member.get('id')")
+            .trello-import-project-members-single
                 .avatar.empty {{member.get('full_name')[0].toUpperCase()}}
-                span.username {{member.get('full_name')}}
+                span.trello-import-project-members-username {{member.get('full_name')}}
 
-            .user-actions
-                .taiga-user(ng-if="vm.getUser(member)")
-                    .img
+            .trello-import-project-members-actions
+                .trello-import-project-members-selected(ng-if="vm.getUser(member)") {{vm.getUser(member).get('full_name')}}
+                    .trello-import-project-members-selected-img
                         img(tg-avatar="vm.getUser(member)")
-                    | {{vm.getUser(member).get('full_name')}}
-
-                .check-selected(ng-if="vm.isMemberSelected(member)")
-                    tg-svg(svg-icon="icon-check-empty")
 
                 div(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
                     button.button.button-green(ng-click="vm.confirmUser(member, member.get('user'))")
@@ -36,7 +42,7 @@
                         translate="PROJECT.IMPORT.TRELLO.CHOOSE"
                     )
 
-    button.button.button-green.submit(
+    button.button.button-green.trello-import-project-members-submit(
         ng-if="vm.members.size > 0"
         ng-click="vm.beforeSubmitUsers()"
         translate="PROJECT.IMPORT.IMPORT"

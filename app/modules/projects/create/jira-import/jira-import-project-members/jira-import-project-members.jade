@@ -1,32 +1,31 @@
-.create-project.import-project
+.jira-import-project-members
     div(ng-include="'projects/create/import/import-header.html'")
 
-    h2(translate="PROJECT.IMPORT.JIRA.PROJECT_MEMBERS")
-    p.process-description(translate="PROJECT.IMPORT.JIRA.PROCESS_DESCRIPTION")
+    h2.jira-import-project-members-title(translate="PROJECT.IMPORT.JIRA.PROJECT_MEMBERS")
+    p(translate="PROJECT.IMPORT.JIRA.PROCESS_DESCRIPTION")
 
     .spin(tg-loading="!!!vm.members.size")
     
-    .import-project-system(ng-if="vm.members.size")
-        .import-project-system-logo
+    .jira-import-project-members-system(ng-if="vm.members.size")
+        .jira-import-project-members-logo
             img(
                 src="/#{v}/images/import-logos/jira.png"
                 alt="Jira Logo"
             )
-        .import-project-system-logo
+        .jira-import-project-members-logo
             img(
                 src="/#{v}/images/logo-color.png"
                 alt="Taiga Logo"
             )
     ul(ng-if="vm.members.size")
-        li.user-row(tg-repeat="member in vm.members track by member.get('id')")
-            .user-info
+        li.jira-import-project-members-row(tg-repeat="member in vm.members track by member.get('id')")
+            .jira-import-project-members-single
                 .avatar.empty {{member.get('full_name')[0].toUpperCase()}}
-                span.username {{member.get('full_name')}}
+                span.jira-import-project-members-username {{member.get('full_name')}}
 
-            .user-actions
-                .taiga-user(ng-if="vm.getUser(member)")
-                    | {{vm.getUser(member).get('full_name')}}
-                    .user-img
+            .jira-import-project-members-actions
+                .jira-import-project-members-selected(ng-if="vm.getUser(member)") {{vm.getUser(member).get('full_name')}}
+                    .jira-import-project-members-selected-img
                         img(tg-avatar="vm.getUser(member)")
 
                 div(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
@@ -42,7 +41,7 @@
                         translate="PROJECT.IMPORT.JIRA.CHOOSE"
                     )
 
-    button.button.button-green.submit(
+    button.button.button-green.jira-import-project-members-submit(
         ng-if="vm.members.size > 0"
         ng-click="vm.beforeSubmitUsers()"
         translate="PROJECT.IMPORT.IMPORT"
