@@ -1006,7 +1006,8 @@
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Trello card?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Match these Trello users with their user in Taiga so we can assign the tasks correctly",
-                "CHOOSE": "Choose"
+                "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
+                "CHOOSE": "Select user"
             },
             "GITHUB": {
                 "TITLE": "Github",
@@ -1035,7 +1036,8 @@
                 "LINKS_DESCRIPTION": "Do you want to keep the link of each item with the original Jira issue?",
                 "PROJECT_MEMBERS": "Project Members",
                 "PROCESS_DESCRIPTION": "Match these Jira users with their user in Taiga so we can assign the tasks correctly",
-                "CHOOSE": "Choose",
+                "MATCH": "Is <strong>{{user_external}}</strong> the same person as <strong>{{user_internal}}</strong>?",
+                "CHOOSE": "Select user",
                 "KANBAN_PROJECT": "Kanban",
                 "SCRUM_PROJECT": "Scrum",
                 "ISSUES_PROJECT": "Issues",

@@ -24,22 +24,26 @@
                 span.jira-import-project-members-username {{member.get('full_name')}}
 
             .jira-import-project-members-actions
-                .jira-import-project-members-selected(ng-if="vm.getUser(member)") {{vm.getUser(member).get('full_name')}}
-                    .jira-import-project-members-selected-img
-                        img(tg-avatar="vm.getUser(member)")
-
-                div(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
-                    button.button.button-green(ng-click="vm.confirmUser(member, member.get('user'))")
+                .jira-import-project-members-match(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
+                    span(
+                        translate="PROJECT.IMPORT.JIRA.MATCH"
+                        translate-values="{user_external:member.get('full_name'), user_internal: vm.getUser(member).get('full_name')}"
+                    )
+                    button.jira-import-project-members-match-true(ng-click="vm.confirmUser(member, member.get('user'))")
                         tg-svg(svg-icon="icon-check-empty")
-
-                    button.button.button-red(ng-click="vm.cleanUser(member)")
+                    button.jira-import-project-members-match-false(ng-click="vm.cleanUser(member)")
                         tg-svg(svg-icon="icon-close")
 
-                div(ng-if="(!member.get('user') || vm.cancelledUsers.indexOf(member.get('id')) !== -1) && !vm.isMemberSelected(member)")
-                    button.button.button-green(
-                        ng-click="vm.searchUser(member)"
-                        translate="PROJECT.IMPORT.JIRA.CHOOSE"
-                    )
+                .jira-import-project-members-selected(ng-if="vm.getUser(member)") 
+                    span {{vm.getUser(member).get('full_name')}}
+                    span.jira-import-project-members-selected-img
+                        img(tg-avatar="vm.getUser(member)")
+
+                button.button.button-trans.jira-import-project-members-choose(
+                    ng-if="(!member.get('user') || vm.cancelledUsers.indexOf(member.get('id')) !== -1) && !vm.isMemberSelected(member)"
+                    ng-click="vm.searchUser(member)"
+                    translate="PROJECT.IMPORT.JIRA.CHOOSE"
+                )
 
     button.button.button-green.jira-import-project-members-submit(
         ng-if="vm.members.size > 0"

@@ -82,8 +82,8 @@
         align-items: center;
         border-bottom: 1px solid $whitish;
         display: flex;
-        justify-content: space-between;
         padding: .5rem 0;
+        justify-content: space-between;
 
         &:first-child {
             border-top: 1px solid $whitish;
@@ -118,29 +118,36 @@
     }
 
     &-match {
-        label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        input {
-            display: none;
-            &:checked {
-                +span {
-                    background: $primary-light;
-                }
+        color: $gray-light;
+        button {
+            border-radius: 50%;
+            padding: .25rem .5rem;
+            background: $white;
+            svg {
+                @include svg-size(.75rem);
             }
         }
-        &-indicator {
-            margin-left: .5rem;
-            padding: .25rem .5rem;
-            background: $whitish;
-            border-radius: 2px;
-            display: inline-block;
+        &-true {
+            border: 1px solid $primary;
+            margin: 0 .1rem 0 .25rem;
+            transition: background .2s;
+            &:hover {
+                background: rgba($primary-light, .3);
+            }
+            svg {
+                fill: $primary;
+            }
         }
-        .icon-check-empty {
-            @include svg-size(.8rem);
-            fill: $white;
+        &-false {
+            border: 1px solid $red;
+            margin: 0 .25rem 0 .1rem;
+            transition: background .2s;
+            &:hover {
+                background: rgba($red, .3);
+            }
+            svg {
+                fill: $red;
+            }
         }
     }
 

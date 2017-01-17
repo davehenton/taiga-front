@@ -5,7 +5,7 @@
     p(translate="PROJECT.IMPORT.GITHUB.PROCESS_DESCRIPTION")
 
     .spin(tg-loading="!!!vm.members.size")
-    
+
     .github-import-project-members-system(ng-if="vm.members.size")
         .github-import-project-members-logo
             img(
@@ -25,36 +25,20 @@
                 span.github-import-project-members-username {{member.get('full_name')}}
 
             .github-import-project-members-actions
-            
-                .github-import-project-members-match
-                    label(
-                        for="{{vm.getUser(member).get('id')}}-{{vm.getUser(member).get('username')}}"
-                    ) 
-                        span(
-                            translate="PROJECT.IMPORT.GITHUB.MATCH"
-                            translate-values="{user_external:member.get('full_name'), user_internal: vm.getUser(member).get('full_name')}"
-                        )
-                            tg-svg(svg-icon="icon-check-empty")
-                        input(
-                            ng-model="vm.isUserMatched"
-                            id="{{vm.getUser(member).get('id')}}-{{vm.getUser(member).get('username')}}"
-                            type="checkbox"
-                        )
-                        span.github-import-project-members-match-indicator
-                            tg-svg(svg-icon="icon-check-empty")
-                    
+                .github-import-project-members-match(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
+                    span(
+                        translate="PROJECT.IMPORT.GITHUB.MATCH"
+                        translate-values="{user_external:member.get('full_name'), user_internal: vm.getUser(member).get('full_name')}"
+                    )
+                    button.github-import-project-members-match-true(ng-click="vm.confirmUser(member, member.get('user'))")
+                        tg-svg(svg-icon="icon-check-empty")
+                    button.github-import-project-members-match-false(ng-click="vm.cleanUser(member)")
+                        tg-svg(svg-icon="icon-close")
+
                 .github-import-project-members-selected(ng-if="vm.getUser(member)") 
                     span {{vm.getUser(member).get('full_name')}}
                     span.github-import-project-members-selected-img
                         img(tg-avatar="vm.getUser(member)")
-
-                //- div(ng-if="member.get('user') && vm.cancelledUsers.indexOf(member.get('id')) === -1 && !vm.isMemberSelected(member)")
-                //-     button.button.button-green(ng-click="vm.confirmUser(member, member.get('user'))")
-                //-         tg-svg(svg-icon="icon-check-empty")
-                //- 
-                //-     button.button.button-red(ng-click="vm.cleanUser(member)")
-                //-         tg-svg(svg-icon="icon-close")
-
 
                 button.button.button-trans.github-import-project-members-choose(
                     ng-if="(!member.get('user') || vm.cancelledUsers.indexOf(member.get('id')) !== -1) && !vm.isMemberSelected(member)"
@@ -69,10 +53,10 @@
     )
 
     tg-select-import-user-lightbox.lightbox(
-       visible="vm.selectImportUserLightbox"
-       on-close="vm.selectImportUserLightbox = false"
-       user="vm.searchingUser"
-       on-select-user="vm.confirmUser(user, taigaUser)"
+        visible="vm.selectImportUserLightbox"
+        on-close="vm.selectImportUserLightbox = false"
+        user="vm.searchingUser"
+        on-select-user="vm.confirmUser(user, taigaUser)"
     )
 
     tg-warning-user-import-lightbox.lightbox(
