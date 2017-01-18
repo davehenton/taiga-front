@@ -12,6 +12,8 @@ env:
 plugins:
   - angular
 
+extends: angular
+
 # http://eslint.org/docs/rules/
 rules:
   # Possible Errors
